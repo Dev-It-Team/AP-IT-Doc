@@ -1241,7 +1241,7 @@
   },
   {
     "type": "get",
-    "url": "/deliveryDrivers/:id",
+    "url": "/deliveryDrivers/users/:IdUser",
     "title": "Request specific delivery driver information",
     "version": "1.1.0",
     "name": "GetDeliveryDriver",
@@ -1253,8 +1253,8 @@
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "IdDeliveryDriver",
-            "description": "<p>Unique id of the delivery driver.</p>"
+            "field": "IdUser",
+            "description": "<p>Unique id of the user related.</p>"
           }
         ]
       }
@@ -1295,89 +1295,6 @@
             "type": "Number",
             "optional": false,
             "field": "VoteNb",
-            "description": "<p>Number of votes on this delivery driver.</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "DeliveryDriverNotFound",
-            "description": "<p>The delivery driver wanted was not found.</p>"
-          }
-        ]
-      }
-    },
-    "filename": "routes/deliveryDrivers.js",
-    "groupTitle": "DeliveryDrivers"
-  },
-  {
-    "type": "get",
-    "url": "/deliveryDrivers/:id",
-    "title": "Request specific delivery driver information",
-    "version": "1.0.0",
-    "name": "GetDeliveryDriver",
-    "group": "DeliveryDrivers",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "IdDeliveryDriver",
-            "description": "<p>Unique id of the delivery driver.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "IdDeliveryDriver",
-            "description": "<p>Unique id of the delivery driver.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "IdUser",
-            "description": "<p>Unique id of the user related to this delivery driver.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "AdresseFacturation",
-            "description": "<p>Adress of facturation.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "TypeVehicule",
-            "description": "<p>Type of vehicule used.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "Note",
-            "description": "<p>Total votes on this delivery driver.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "NbVotes",
             "description": "<p>Number of votes on this delivery driver.</p>"
           }
         ]
@@ -1554,20 +1471,6 @@
             "optional": false,
             "field": "VehiculeType",
             "description": "<p>Type of vehicule used.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "Note",
-            "description": "<p>Total votes on this delivery driver.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "VoteNb",
-            "description": "<p>Number of votes on this delivery driver.</p>"
           }
         ]
       }
@@ -2281,6 +2184,68 @@
   },
   {
     "type": "post",
+    "url": "/users/:IdUser/logs/",
+    "title": "Create Connection Logs information",
+    "version": "1.1.0",
+    "name": "PostConnectionLogs",
+    "group": "LogsConnection",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "IdUser",
+            "description": "<p>Unique id of the user related to this log.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "Date",
+            "description": "<p>Date when the log was saved.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Description",
+            "description": "<p>Description of the log.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>LogsConnection created.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ConnectionNotCreated",
+            "description": "<p>The log was not created.</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/uploadFiles.js",
+    "groupTitle": "LogsConnection"
+  },
+  {
+    "type": "post",
     "url": "/connectionLogs/",
     "title": "Create Connection Logs information",
     "version": "1.0.0",
@@ -2728,7 +2693,7 @@
           },
           {
             "group": "Success 200",
-            "type": "Array",
+            "type": "String",
             "optional": false,
             "field": "Picture",
             "description": "<p>List of pictures for this menu.</p>"
@@ -2924,10 +2889,10 @@
           },
           {
             "group": "Success 200",
-            "type": "Array",
+            "type": "String",
             "optional": false,
             "field": "Picture",
-            "description": "<p>List of pictures for this menu.</p>"
+            "description": "<p>Picture for this menu.</p>"
           },
           {
             "group": "Success 200",
@@ -3101,7 +3066,7 @@
           },
           {
             "group": "Parameter",
-            "type": "Array",
+            "type": "String",
             "optional": false,
             "field": "Picture",
             "description": "<p>List of pictures for this menu.</p>"
@@ -3300,7 +3265,7 @@
           },
           {
             "group": "Parameter",
-            "type": "Array",
+            "type": "String",
             "optional": false,
             "field": "Picture",
             "description": "<p>List of pictures for this menu.</p>"
@@ -4100,7 +4065,7 @@
           },
           {
             "group": "Success 200",
-            "type": "Array",
+            "type": "String",
             "optional": false,
             "field": "Picture",
             "description": "<p>Pictures of the product.</p>"
@@ -4282,7 +4247,7 @@
           },
           {
             "group": "Success 200",
-            "type": "Array",
+            "type": "String",
             "optional": false,
             "field": "Picture",
             "description": "<p>Pictures of the product.</p>"
@@ -4443,7 +4408,7 @@
           },
           {
             "group": "Parameter",
-            "type": "Array",
+            "type": "String",
             "optional": false,
             "field": "Picture",
             "description": "<p>Pictures of the product.</p>"
@@ -4628,7 +4593,7 @@
           },
           {
             "group": "Parameter",
-            "type": "Array",
+            "type": "String",
             "optional": false,
             "field": "Picture",
             "description": "<p>Pictures of the product.</p>"
@@ -4973,82 +4938,6 @@
   },
   {
     "type": "get",
-    "url": "/restaurants/:id",
-    "title": "Get specific Restaurant Information",
-    "version": "1.0.0",
-    "name": "GetRestaurant",
-    "group": "Restaurants",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "IdRestaurant",
-            "description": "<p>Restaurant's unique id.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "IdRestaurant",
-            "description": "<p>Restaurant's unique id.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "idUser",
-            "description": "<p>User's id related to this restaurant.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "Nom",
-            "description": "<p>Name of this restaurant.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "AdresseRestaurant",
-            "description": "<p>Address of this restaurant.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "image_banniere",
-            "description": "<p>Pictures of the restaurant.</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "RestaurantNotFound",
-            "description": "<p>The wanted restaurant cannot be found.</p>"
-          }
-        ]
-      }
-    },
-    "filename": "routes/restaurants/restaurants.js",
-    "groupTitle": "Restaurants"
-  },
-  {
-    "type": "get",
     "url": "/restaurants/",
     "title": "Get Restaurants Information",
     "version": "1.1.0",
@@ -5332,13 +5221,6 @@
             "optional": false,
             "field": "IdRestaurant",
             "description": "<p>Restaurant's unique id.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "IdUser",
-            "description": "<p>User's id related to this restaurant.</p>"
           },
           {
             "group": "Parameter",
